@@ -1,6 +1,7 @@
 //Criação de classe para o banco de dados
 import { IsNotEmpty } from "class-validator";
 import { Categoria } from "src/categoria/entities/categoria.entity";
+import { Usuario } from "src/usuario/entities/usuario.entities";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({name: 'tb_produto'})
@@ -27,4 +28,9 @@ export class Produto{
         onDelete: 'CASCADE'
     })
     categoria: Categoria;
+
+    @ManyToOne(() => Usuario, (usuario) => usuario.produto, {
+        onDelete: 'CASCADE'
+    })
+    usuario: Usuario;
 }
